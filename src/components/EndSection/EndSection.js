@@ -1,26 +1,53 @@
 import React from 'react';
 import axios from '../Requests/FirebaseInstance'
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
 class EndSection extends React.Component {
 
   constructor(){
     super()
     this.state = {
-
+      email: null,
+      errorMsg: null
     }
   }
 
-  test = () => {
-    axios.post('/user', {
-      firstName: 'Fred',
-      lastName: 'Flintstone'
+  submitEmail = (event) => {
+    const existingEmailsArray = []
+
+    axios.get('/email.json').then(response => {
+      Object.keys(response.data).forEach(item => {
+        existingEmailsArray.push(response.data[item].email)
+      });
+
+      if (existingEmailsArray.includes(this.state.email)) {
+        this.setState({
+          errorMsg: 'Hey it looks like you have already entered this email'
+        })
+        setTimeout(() =>{this.setState({errorMsg: null})}, 2000)
+      } else {
+        axios.post('/email.json', {
+          email: this.state.email
+        })
+        .then( response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      }
+    }).catch(error => {
+      console.log(error)
     })
-    .then(function (response) {
-      console.log(response);
+    event.preventDefault()
+  }
+
+  emailChange = (event) => {
+    const email = event.target.value
+    this.setState({
+      email
     })
-    .catch(function (error) {
-      console.log(error);
-    });
   }
 
   componentDidMount() {
@@ -29,9 +56,19 @@ class EndSection extends React.Component {
 
   render() {
     return(
-      <div>
-        <button onClick={() => this.test()}>Post</button>
-      </div>
+      <form onSubmit={this.submitEmail}>
+        <Input
+          placeholder="Email"
+          value={this.state.emailInput}
+          onChange={this.emailChange}
+          type="email"
+          inputProps={{
+            'aria-label': 'Description',
+          }}
+      />
+        {this.state.errorMsg && this.state.errorMsg}
+        <Button type="submit">Post</Button>
+      </form>
     )
   }
 }
