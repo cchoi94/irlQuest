@@ -1,5 +1,7 @@
 .QuestInviteCardContainer {
   display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .QuestInfoContainer {
@@ -19,7 +21,7 @@
 }
 
 .RewardContainer {
-  margin-top: 95px;
+  margin: 95px 0;
 }
 
 .RewardsList {
@@ -32,4 +34,19 @@
 .QuestInviteCardAcceptButton {
   position: absolute !important;
   bottom: 0;
+}
+
+@media(max-width: 1024px) {
+  .QuestInviteCardContainer {
+    flex-direction: column;
+    max-width: none;
+  }
+  .QuestInviteCardSubheaderContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .QuestInviteCoverImage {
+    height: 200px;
+  }
 }

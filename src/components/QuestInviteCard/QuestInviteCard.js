@@ -24,7 +24,7 @@ const QuestInviteCard = (props) => {
         <p className={"desktopHeader"}>
           {data.name}
         </p>
-        <div className={classes.SubheaderContainer}>
+        <div className={[classes.SubheaderContainer, classes.QuestInviteCardSubheaderContainer]}>
           <span className={"desktopSubheader"}>{data.location.name}</span>
           <span className={"desktopSubheader"}>Difficulty {data.difficulty}/5</span>
         </div>
