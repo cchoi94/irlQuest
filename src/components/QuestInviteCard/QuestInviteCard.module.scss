@@ -1,0 +1,35 @@
+.QuestInviteCardContainer {
+  display: flex;
+}
+
+.QuestInfoContainer {
+  position: relative;
+  margin: 32px;
+}
+
+.SubheaderContainer {
+  width: 462px;
+
+  span {
+    margin-right: 32px;
+    width: 50%;
+  }
+
+  margin-bottom: 26px
+}
+
+.RewardContainer {
+  margin-top: 95px;
+}
+
+.RewardsList {
+  margin-top: 20px;
+    p {
+      margin: 12px 0;
+    }
+}
+
+.QuestInviteCardAcceptButton {
+  position: absolute !important;
+  bottom: 0;
+}
