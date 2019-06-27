@@ -24,7 +24,7 @@ const QuestInviteCard = (props) => {
         <p className={"desktopHeader"}>
           {data.name}
         </p>
-        <div className={[classes.SubheaderContainer, classes.QuestInviteCardSubheaderContainer]}>
+        <div className={`${classes.SubheaderContainer} ${classes.QuestInviteCardSubheaderContainer}`}>
           <span className={"desktopSubheader"}>{data.location.name}</span>
           <span className={"desktopSubheader"}>Difficulty {data.difficulty}/5</span>
         </div>
@@ -39,7 +39,7 @@ const QuestInviteCard = (props) => {
             {fetchRewards()}
           </div>
         </div>
-        <Button onClick={() => onSelectQuestId(id)} variant="contained" className={["primaryButton", classes.QuestInviteCardAcceptButton]}>
+        <Button onClick={() => onSelectQuestId(id)} variant="contained" className={`primaryButton ${classes.QuestInviteCardAcceptButton}`}>
           Accept
         </Button>
       </div>
