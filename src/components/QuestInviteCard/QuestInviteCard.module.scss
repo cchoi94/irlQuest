@@ -10,7 +10,7 @@
 }
 
 .RewardContainer {
-  margin: 24px 0 56px 0;
+  margin: 95px 0;
 }
 
 .RewardsList {
@@ -34,6 +34,10 @@
   .QuestInviteCardContainer {
     flex-direction: column;
     max-width: none;
+  }
+
+  .RewardContainer {
+    margin: 24px 0 56px 0;
   }
 
 }
