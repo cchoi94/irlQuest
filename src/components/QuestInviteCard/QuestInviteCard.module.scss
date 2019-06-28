@@ -5,24 +5,12 @@
   overflow: hidden;
 }
 
-.QuestInfoContainer {
-  position: relative;
-  margin: 32px;
-}
-
 .SubheaderContainer {
-  width: 462px;
-
-  span {
-    margin-right: 32px;
-    width: 50%;
-  }
-
-  margin-bottom: 26px
+  margin-bottom: 26px;
 }
 
 .RewardContainer {
-  margin: 95px 0;
+  margin: 24px 0 56px 0;
 }
 
 .RewardsList {
@@ -37,17 +25,15 @@
   bottom: 0;
 }
 
+.QuestInviteCoverImage {
+  max-width: 100%;
+  height: auto;
+}
+
 @media(max-width: 1024px) {
   .QuestInviteCardContainer {
     flex-direction: column;
     max-width: none;
   }
-  .QuestInviteCardSubheaderContainer {
-    display: flex;
-    flex-direction: column;
-  }
 
-  .QuestInviteCoverImage {
-    height: 200px;
-  }
 }
