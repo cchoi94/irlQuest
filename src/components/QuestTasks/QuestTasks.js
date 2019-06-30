@@ -58,8 +58,7 @@ class QuestTasks extends React.Component {
         type: 'success',
         title: 'Correct!',
         confirmButtonText: 'Continue'
-      })
-      window.scrollTo(0, 0)
+      }).then(result => {window.scrollTo(0, 0)})
       this.setState({
         questTaskProgress: task_number + 1
       })
