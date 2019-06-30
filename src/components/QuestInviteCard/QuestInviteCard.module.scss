@@ -20,11 +20,6 @@
     }
 }
 
-.QuestInviteCardAcceptButton {
-  position: absolute !important;
-  bottom: 0;
-}
-
 .QuestInviteCoverImage {
   max-width: 100%;
   height: auto;
@@ -39,5 +34,11 @@
   .RewardContainer {
     margin: 24px 0 56px 0;
   }
+}
 
+@media(min-width: 1024px) {
+  .QuestInviteCardAcceptButton {
+    position: absolute !important;
+    bottom: 0;
+  }
 }

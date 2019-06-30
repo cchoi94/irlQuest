@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import axios from '../Requests/FirebaseInstance'
 
 import classes from './QuestInviteCard.module.scss'
 import Paper from '@material-ui/core/Paper';
@@ -36,15 +35,11 @@ const QuestInviteCard = (props) => {
         <p className={"header"}>
           {data.name}
         </p>
-        <div className={`${classes.SubheaderContainer} ${classes.QuestInviteCardSubheaderContainer}`}>
           <span className={"subheader"}>{data.location.name} | </span>
           <span className={`subheader`} style={levelSubheaderStyle}>Level {data.level}</span>
-        </div>
-        <div className={"paragraphContainer"}>
           <p className={"description"}>
             {data.description}
           </p>
-        </div>
         <div className={classes.RewardContainer}>
           <span className={"subheader"}>Reward</span>
           <div className={classes.RewardsList}>

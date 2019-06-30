@@ -6,11 +6,10 @@ import EndSection from '../EndSection/EndSection'
 
 class QuestPool extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       questPool: [],
-      selectedQuestId: null
     }
   }
 
@@ -23,14 +22,12 @@ class QuestPool extends React.Component {
   }
 
   onSelectQuestId = (id) => {
-    this.setState({
-      selectedQuestId: id
-    })
+    this.props.selectedQuestId(id)
   }
 
   render() {
 
-    const {selectedQuestId} = this.state
+    const {selectedQuestId} = this.props
 
     const fetchQuestPool = () => {
       let questPool = [...this.state.questPool]
@@ -50,7 +47,7 @@ class QuestPool extends React.Component {
 
     return(
       <div>
-        {selectedQuestId ? <EndSection questId={selectedQuestId}/> : fetchQuestPool()}
+        {selectedQuestId ? fetchQuestPool() : null}
       </div>
     )
   }

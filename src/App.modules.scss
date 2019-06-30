@@ -20,7 +20,7 @@ body {
 }
 
 .container {
-  padding: 32px;
+  padding: 16px;
 }
 
 .header {
@@ -46,15 +46,12 @@ body {
   font-weight: normal;
   font-size: 20px;
   line-height: 24px;
+  margin: 24px 0;
 }
 
 .infoContainer {
   position: relative;
   margin: 32px;
-}
-
-.paragraphContainer {
-  margin: 24px 0;
 }
 
 .primaryButton {
@@ -65,16 +62,55 @@ body {
   color: #ffffff !important;
 }
 
+.cardTaskNumber {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  margin: 40px auto 16px auto;
+  border-radius: 50px;
+  background: #F44336;
+  color: #ffffff;
+  font-family: Playfair Display;
+  font-weight: bold;
+  font-size: 34px;
+}
+
+.cardTaskSubheader {
+  font-family: Playfair Display;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+}
+
+.iconBox {
+  display: flex;
+  justify-content: center;
+  margin: 8px;
+    p {
+      margin: 4px;
+    }
+}
+
+.input {
+  margin: 32px 0 !important
+}
+
 @media(max-width: 1024px) {
   .app {
     padding: 16px;
   }
+
   .header {
     font-size: 34px;
     line-height: 45px;
     margin-bottom: 16px;
   }
-  .infoContainer{
+
+  .infoContainer {
     margin: 16px;
   }
 }
