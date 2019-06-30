@@ -6,6 +6,11 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+import searchIcon from '../../assets/icons/search.png'
+import puzzleIcon from '../../assets/icons/puzzle.png'
+import chatIcon from '../../assets/icons/chat.png'
+import qrcodeIcon from '../../assets/icons/qrCode.png'
+
 
 class Task extends React.Component {
 
@@ -20,6 +25,10 @@ class Task extends React.Component {
     this.setState({taskAnswer: event.target.value})
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   render() {
 
   const {data, totalNumberOfTasks, questProgress, uniqueId} = this.props
@@ -28,7 +37,20 @@ class Task extends React.Component {
     return (
       data.icons.map(icon => {
         return (
-          <p>{icon.type}</p>
+          <div>
+            {icon.type === 'search' &&
+              <img src={searchIcon} alt="search icon"/>
+            }
+            {icon.type === 'puzzle' &&
+              <img src={puzzleIcon} alt="puzzle icon"/>
+            }
+            {icon.type === 'chat' &&
+              <img src={chatIcon} alt="chat icon" />
+            }
+            {icon.type === 'qrcode' &&
+              <img src={qrcodeIcon} alt="QR code icon" />
+            }
+          </div>
         )
       })
     )

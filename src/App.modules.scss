@@ -89,9 +89,11 @@ body {
 .iconBox {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 8px;
-    p {
-      margin: 4px;
+    img {
+      margin: 6px;
+      width: 24px;
     }
 }
 
