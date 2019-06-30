@@ -13,7 +13,8 @@ class QuestTasks extends React.Component {
     this.state = {
       questData: null,
       questUniqIds: [],
-      questTaskProgress: 1
+      questTaskProgress: 1,
+      showIncorrectMsg: false
     }
   }
 
@@ -56,6 +57,12 @@ class QuestTasks extends React.Component {
       this.setState({
         questTaskProgress: task_number + 1
       })
+    } else if (answer !== submittedAnswer) {
+      this.setState({
+        showIncorrectMsg: true
+      }, () => {
+        setTimeout(() => {this.setState({showIncorrectMsg: false})}, 3000)
+      })
     }
 
     
@@ -79,6 +86,7 @@ class QuestTasks extends React.Component {
                 totalNumberOfTasks={questData.length}
                 questProgress={this.questProgress}
                 uniqueId={questUniqIds[index]}
+                answerIsIncorrect={this.state.showIncorrectMsg}
               />
             :
               null

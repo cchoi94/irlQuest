@@ -17,7 +17,8 @@ class Task extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      taskEvent: ''
+      taskEvent: '',
+      taskAnswer: ''
     }
   }
 
@@ -28,10 +29,16 @@ class Task extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0)
   }
+  
+  onInputClick = () => {
+    this.setState({
+      taskAnswer: ''
+    })
+  }
 
   render() {
 
-  const {data, totalNumberOfTasks, questProgress, uniqueId} = this.props
+  const {data, totalNumberOfTasks, questProgress, uniqueId, answerIsIncorrect} = this.props
 
   const generateIcons = () => {
     return (
@@ -65,6 +72,7 @@ class Task extends React.Component {
       })
     )
   }
+
     
     return(
       <form onSubmit={(event) => questProgress(uniqueId, data.task_number, data.answer, this.state.taskAnswer, event)}>
@@ -84,8 +92,10 @@ class Task extends React.Component {
             fullWidth
             value={this.state.taskAnswer}
             onChange={this.handleTaskAnswerValue}
+            onClick={this.onInputClick}
           />
-          <Button variant="contained" type="submit" className={`primaryButton ${classes.TaskSubmitButton}`}>
+          <p className={`incorrectAnswer ${(answerIsIncorrect ? 'opacityShow' : 'opacityHide')}`}>Incorrect Try Again.</p>
+          <Button variant="contained" type="submit" className={`primaryButton ${classes.TaskSubmitButton}`} disabled={!this.state.taskAnswer}>
             Submit
           </Button>
         </Paper>
