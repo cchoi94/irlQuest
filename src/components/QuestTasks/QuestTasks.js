@@ -2,6 +2,7 @@ import React from 'react';
 
 import axios from '../Requests/FirebaseInstance'
 import uniqid from 'uniqid'
+import Swal from 'sweetalert2'
 
 import Task from '../Task/Task'
 
@@ -53,16 +54,25 @@ class QuestTasks extends React.Component {
     let idCheckInt = task_number - 1
 
     if (this.state.questUniqIds[idCheckInt] === id && answer === submittedAnswer) {
-      alert('Correct!')
+      Swal.fire({
+        type: 'success',
+        title: 'Correct!',
+        confirmButtonText: 'Continue'
+      })
       this.setState({
         questTaskProgress: task_number + 1
       })
     } else if (answer !== submittedAnswer) {
-      this.setState({
-        showIncorrectMsg: true
-      }, () => {
-        setTimeout(() => {this.setState({showIncorrectMsg: false})}, 3000)
+      Swal.fire({
+        type: 'error',
+        title: 'Incorrect!',
+        confirmButtonText: 'Try again'
       })
+      // this.setState({
+      //   showIncorrectMsg: true
+      // }, () => {
+      //   setTimeout(() => {this.setState({showIncorrectMsg: false})}, 3000)
+      // })
     }
 
     

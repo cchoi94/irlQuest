@@ -94,7 +94,6 @@ class Task extends React.Component {
             onChange={this.handleTaskAnswerValue}
             onClick={this.onInputClick}
           />
-          <p className={`incorrectAnswer ${(answerIsIncorrect ? 'opacityShow' : 'opacityHide')}`}>Incorrect Try Again.</p>
           <Button variant="contained" type="submit" className={`primaryButton ${classes.TaskSubmitButton}`} disabled={!this.state.taskAnswer}>
             Submit
           </Button>

@@ -102,24 +102,8 @@ body {
   }
 }
 
-.incorrectAnswer {
-  color: #DD2C00;
-  font-family: Montserrat;
-  font-size: 12px;
-  line-height: 15px;
-  margin: 16px 0;
-}
-
-.opacityHide {
-  opacity: 0
-}
-
-.opacityShow {
-  opacity: 1
-}
-
 .input {
-  margin-top: 32px !important
+  margin: 32px 0 !important
 }
 
 @media(max-width: 1024px) {
