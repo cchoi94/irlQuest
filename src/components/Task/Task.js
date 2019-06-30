@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-// import searchIcon from '../../assets/icons/search.png'
+import searchIcon from '../../assets/icons/search.png'
 import puzzleIcon from '../../assets/icons/puzzle.png'
 import chatIcon from '../../assets/icons/chat.png'
 import qrcodeIcon from '../../assets/icons/qrCode.png'
@@ -38,9 +38,9 @@ class Task extends React.Component {
       data.icons.map(icon => {
         return (
           <div>
-            {/* {icon.type === 'search' &&
+            {icon.type === 'search' &&
               <img src={searchIcon} alt="search icon"/>
-            } */}
+            }
             {icon.type === 'puzzle' &&
               <img src={puzzleIcon} alt="puzzle icon"/>
             }
