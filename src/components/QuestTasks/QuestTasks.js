@@ -52,6 +52,7 @@ class QuestTasks extends React.Component {
     let idCheckInt = task_number - 1
 
     if (this.state.questUniqIds[idCheckInt] === id && answer === submittedAnswer) {
+      alert('Correct!')
       this.setState({
         questTaskProgress: task_number + 1
       })
