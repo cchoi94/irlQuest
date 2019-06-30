@@ -12,7 +12,8 @@ class QuestTasks extends React.Component {
     super(props)
     this.state = {
       questData: null,
-      questUniqIds: []
+      questUniqIds: [],
+      questTaskProgress: 1
     }
   }
 
@@ -43,8 +44,20 @@ class QuestTasks extends React.Component {
     })
   }
 
-  questProgress = (id) => {
-    console.log(id)
+
+  questProgress = (id, task_number, answer, submittedAnswer, event) => {
+    event.preventDefault()
+    // console.log(id, task_number, answer, submittedAnswer, event)
+
+    let idCheckInt = task_number - 1
+
+    if (this.state.questUniqIds[idCheckInt] === id && answer === submittedAnswer) {
+      this.setState({
+        questTaskProgress: task_number + 1
+      })
+    }
+
+    
   }
 
     render() {
@@ -54,18 +67,21 @@ class QuestTasks extends React.Component {
       let questData = [...this.state.questData]
 
       return questData.map((quest, index) => {
-
         const questUniqIds = [...this.state.questUniqIds]
 
         return (
           <div>
-            <Task 
-              key={quest.task_number}
-              data={quest}
-              totalNumberOfTasks={questData.length}
-              questProgress={this.questProgress}
-              uniqueId={questUniqIds[index]}
-            />
+            {quest.task_number === this.state.questTaskProgress ?
+              <Task 
+                key={quest.task_number}
+                data={quest}
+                totalNumberOfTasks={questData.length}
+                questProgress={this.questProgress}
+                uniqueId={questUniqIds[index]}
+              />
+            :
+              null
+            }
           </div>
         )
       })
