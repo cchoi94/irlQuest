@@ -7,7 +7,6 @@ export const postEmail = (questId, email) => {
       email
     })
     .then(response => {
-      console.log(response, 'hello');
     })
     .catch(error => {
       console.log(error);
@@ -19,7 +18,7 @@ export const checkForDuplicateEmails = (questId) => {
   return axios.get(`/email/quest_${questId}.json`).then(response => {
     return response
   }).catch(error => {
-    console.log(error, 'error')
+    console.log(error)
   })
 }
 

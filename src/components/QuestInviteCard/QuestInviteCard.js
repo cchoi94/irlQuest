@@ -1,4 +1,6 @@
 import React, {PropTypes} from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 import classes from './QuestInviteCard.module.scss'
 import Paper from '@material-ui/core/Paper';
@@ -46,9 +48,11 @@ const QuestInviteCard = (props) => {
             {fetchRewards()}
           </div>
         </div>
-        <Button onClick={() => onSelectQuestId(id)} variant="contained" className={`primaryButton ${classes.QuestInviteCardAcceptButton}`}>
-          Accept
-        </Button>
+        <Link to="/quest">
+          <Button onClick={() => onSelectQuestId(id)} variant="contained" className={`primaryButton ${classes.QuestInviteCardAcceptButton}`}>
+            Accept
+          </Button>
+        </Link>
       </div>
     </Paper>
   )

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.modules.scss';
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 
-import EndSection from './components/EndSection/EndSection'
 import QuestPool from './components/QuestPool/QuestPool'
 import QuestTasks from './components/QuestTasks/QuestTasks'
 
@@ -29,30 +29,35 @@ class App extends React.Component {
     }
   }
 
+  resetQuestId = () => {
+    this.setState({
+      selectedQuestId: null
+    })
+  }
+
   render() {
 
     const {selectedQuestId} = this.state
 
     return (
-      <div className="app">
-        {!this.state.selectedQuestId ?
+    <Router>
+        {!this.state.selectedQuestId &&
           <QuestPool 
             selectedQuestId = {this.setSelectedQuestId}
           />
-        :
-          <QuestTasks 
-            selectedQuestId = {selectedQuestId}
-            isQuestComplete = {this.setSelectedQuestId}
-          />
         }
-        {this.state.questCompleted ? 
-          <EndSection 
-            questId={this.state.selectedQuestId}
-          />
-        :
-          null
-        }
-      </div>
+      <Route path="/quest" render={(routeProps) => (
+        !this.state.selectedQuestId ? (
+          <Redirect to="/"/>) 
+        : 
+        (<QuestTasks 
+          selectedQuestId = {selectedQuestId}
+          isQuestComplete = {this.setupQuestCompletion}
+          resetQuestId= {() => this.resetQuestId()}
+          {...routeProps}
+        />)
+      )}/>
+    </Router>
     );
 
   }

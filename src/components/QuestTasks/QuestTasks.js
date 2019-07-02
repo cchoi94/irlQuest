@@ -5,7 +5,7 @@ import uniqid from 'uniqid'
 import Swal from 'sweetalert2'
 
 import Task from '../Task/Task'
-
+import EndSection from '../EndSection/EndSection'
 
 class QuestTasks extends React.Component {
   
@@ -15,7 +15,8 @@ class QuestTasks extends React.Component {
       questData: null,
       questUniqIds: [],
       questTaskProgress: 1,
-      showIncorrectMsg: false
+      showIncorrectMsg: false,
+      isQuestComplete: false
     }
   }
 
@@ -46,10 +47,13 @@ class QuestTasks extends React.Component {
     })
   }
 
+  resetQuestId = () => {
+    this.props.resetQuestId()
+  }
+
 
   questProgress = (id, task_number, answer, submittedAnswer, event) => {
     event.preventDefault()
-    // console.log(id, task_number, answer, submittedAnswer, event)
 
     let idCheckInt = task_number - 1
 
@@ -68,13 +72,13 @@ class QuestTasks extends React.Component {
         title: 'Incorrect!',
         confirmButtonText: 'Try again'
       })
-      // this.setState({
-      //   showIncorrectMsg: true
-      // }, () => {
-      //   setTimeout(() => {this.setState({showIncorrectMsg: false})}, 3000)
-      // })
     }
 
+      if (this.state.questTaskProgress === this.state.questUniqIds.length) {
+        this.setState({
+          isQuestComplete: true
+        })
+      }
     
   }
 
@@ -104,18 +108,20 @@ class QuestTasks extends React.Component {
           </div>
         )
       })
-
-    }
-      
+      }
 
 
-      return (
-        <div>
-          {this.state.questData ?
-            fetchTaskList()
-          :
-            null
-          }
+    return (
+      <div>
+        {this.state.questData &&
+          fetchTaskList()
+        }
+        {this.state.isQuestComplete &&
+          <EndSection 
+          selectedQuestId={this.props.selectedQuestId}
+          resetQuestId={() =>this.resetQuestId()}
+          />
+        }
         </div>
       )
     }
