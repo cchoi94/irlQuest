@@ -1,3 +1,15 @@
 // .TaskSubmitButton {
 //   margin: 32px 0 16px 0 !important;
 // }
+
+.QrButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:rgba(33, 33, 33, 0.5);
+  margin: 99px 0;
+    img {
+      width: 48px;
+      height: 40px;
+    }
+}

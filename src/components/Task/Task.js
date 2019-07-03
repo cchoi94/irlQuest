@@ -5,12 +5,13 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import QrReader from 'react-qr-reader'
 
 import discoverIcon from '../../assets/icons/discover.png'
 import puzzleIcon from '../../assets/icons/puzzle.png'
 import chatIcon from '../../assets/icons/chat.png'
 import qrcodeIcon from '../../assets/icons/qrCode.png'
-
+import cameraIcon from '../../assets/icons/camera.png'
 
 class Task extends React.Component {
 
@@ -18,7 +19,10 @@ class Task extends React.Component {
     super(props)
     this.state = {
       taskEvent: '',
-      taskAnswer: ''
+      taskAnswer: '',
+      qrInput: false,
+      qrIsActive: false,
+      textInput: true
     }
   }
 
@@ -32,17 +36,50 @@ class Task extends React.Component {
   
   onInputClick = () => {
     this.setState({
-      taskAnswer: ''
+      taskAnswer: '',
     })
+  }
+
+  handleScan = (data) => {
+    if (data) {
+    console.log(data)
+      this.setState({
+        taskAnswer: data,
+        textInput: true,
+        qrIsActive: false
+      })
+    }
+  }
+  handleScanError = err => {
+    console.error(err)
+  }
+
+  openQrCamera = () => {
+    this.setState({
+      qrIsActive: true,
+      textInput: false
+    })
+  }
+
+  onAnswerSubmit = (uniqueId, task_number, answer, taskAnswer, event) => {
+    this.props.questProgress(uniqueId, task_number, answer, taskAnswer, event)
   }
 
   render() {
 
   const {data, totalNumberOfTasks, questProgress, uniqueId, answerIsIncorrect} = this.props
 
+  const {qrInput, qrIsActive, textInput} = this.state
+
   const generateIcons = () => {
     return (
       data.icons.map(icon => {
+        if (icon.type === 'qrcode' && !qrInput) {
+          this.setState({
+            qrInput: true,
+            textInput: false
+          })
+        }
         return (
           <div>
             {icon.type === 'discover' &&
@@ -75,7 +112,7 @@ class Task extends React.Component {
 
     
     return(
-      <form onSubmit={(event) => questProgress(uniqueId, data.task_number, data.answer, this.state.taskAnswer, event)}>
+      <form onSubmit={(event) => this.onAnswerSubmit(uniqueId, data.task_number, data.answer, this.state.taskAnswer, event)}>
         <Paper className={"container"}>
           <p style={{textAlign: 'right', fontWeight: 'bold'}}>{data.task_number}/{totalNumberOfTasks}</p>
           <div className={"cardTaskNumber"}>
@@ -86,6 +123,14 @@ class Task extends React.Component {
             {generateIcons()}
           </div>
             {generateDescription()}
+        {qrInput && !qrIsActive &&
+          <div className={classes.QrButton}>
+            <img src={cameraIcon} alt="camera icon" onClick={this.openQrCamera} />
+            <p>Tap to scan</p>
+          </div>
+        }
+        {textInput &&
+        <div>
           <Input
             placeholder="What's the answer"
             className={"input"}
@@ -97,6 +142,16 @@ class Task extends React.Component {
           <Button variant="contained" type="submit" className={`primaryButton ${classes.TaskSubmitButton}`} disabled={!this.state.taskAnswer}>
             Submit
           </Button>
+        </div>
+        }
+        {qrIsActive &&
+          <QrReader
+            delay={300}
+            onError={this.handleScanError}
+            onScan={this.handleScan}
+            style={{ width: '100%' }}
+          />
+        }
         </Paper>
       </form>
     )
