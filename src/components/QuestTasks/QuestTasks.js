@@ -66,6 +66,11 @@ class QuestTasks extends React.Component {
       this.setState({
         questTaskProgress: task_number + 1
       })
+      if (this.state.questTaskProgress === this.state.questUniqIds.length) {
+        this.setState({
+          isQuestComplete: true
+        })
+      }
     } else if (answer !== submittedAnswer) {
       Swal.fire({
         type: 'error',
@@ -74,11 +79,6 @@ class QuestTasks extends React.Component {
       })
     }
 
-      if (this.state.questTaskProgress === this.state.questUniqIds.length) {
-        this.setState({
-          isQuestComplete: true
-        })
-      }
     
   }
 

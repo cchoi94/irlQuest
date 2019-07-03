@@ -61,10 +61,6 @@ class Task extends React.Component {
     })
   }
 
-  onAnswerSubmit = (uniqueId, task_number, answer, taskAnswer, event) => {
-    this.props.questProgress(uniqueId, task_number, answer, taskAnswer, event)
-  }
-
   render() {
 
   const {data, totalNumberOfTasks, questProgress, uniqueId, answerIsIncorrect} = this.props
@@ -112,7 +108,7 @@ class Task extends React.Component {
 
     
     return(
-      <form onSubmit={(event) => this.onAnswerSubmit(uniqueId, data.task_number, data.answer, this.state.taskAnswer, event)}>
+      <form onSubmit={(event) => questProgress(uniqueId, data.task_number, data.answer, this.state.taskAnswer, event)}>
         <Paper className={"container"}>
           <p style={{textAlign: 'right', fontWeight: 'bold'}}>{data.task_number}/{totalNumberOfTasks}</p>
           <div className={"cardTaskNumber"}>
