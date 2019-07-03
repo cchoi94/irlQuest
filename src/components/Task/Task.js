@@ -42,7 +42,6 @@ class Task extends React.Component {
 
   handleScan = (data) => {
     if (data) {
-    console.log(data)
       this.setState({
         taskAnswer: data,
         textInput: true,
